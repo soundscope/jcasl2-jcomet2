@@ -89,6 +89,7 @@ public class PyCasl2 {
         } catch (Error e) {
             throw new RuntimeException(e.getMessage());
         } catch (Exception e) {
+        	e.printStackTrace();
             throw new RuntimeException("Error: Unexpected error.\nException type:" + e.getClass() + "\n" + e.toString());
         } finally {
             fp.close();
@@ -115,6 +116,7 @@ public class PyCasl2 {
             }
             boolean retFlg = false;
             while (!(this.nextLine.op.equals("END") || this.nextLine.op.equals("EOF"))) {
+            	System.out.println(">>> " + this.nextLine);
                 if (this.nextLine.op.equals("RET")) {
                     retFlg = true;
                 }
@@ -196,7 +198,11 @@ public class PyCasl2 {
         if (i.op.equals("END") || i.op.equals("START")) {
             return false;
         }
-        this.tmpCode.add(this.convert(i));
+        try {
+        	this.tmpCode.add(this.convert(i));
+        } catch (RuntimeException e) {
+        	return false;
+        }
         return true;
     }
 
@@ -339,6 +345,7 @@ public class PyCasl2 {
 
     private Object[] genCodeRAdrX(String op, String[] args) {
         Object[] radrx = this.convRAdrX(args);
+        System.out.println(op + " " + radrx);
         int r = (int) radrx[0];
         Object adr = radrx[1];
         int x = (int) radrx[2];
@@ -441,7 +448,7 @@ public class PyCasl2 {
         } else if (Operation.valueOf(inst.op).code < 0) {
             return null;
         }
-
+//System.out.println("--- " + inst.op + " " + inst);
         Object[] code = this.genCodeFunc.get(Operation.valueOf(inst.op).argType).apply(inst.op, inst.args);
         ByteCode byteCode = new ByteCode(code, this.addr, inst.lineNumber, inst.src);
         this.addr += byteCode.code.length;
