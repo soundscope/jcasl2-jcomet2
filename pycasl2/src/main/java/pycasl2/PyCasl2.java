@@ -234,7 +234,7 @@ public class PyCasl2 {
             return null;
         }
 
-        String re_label = "(?<label>[A-Z][A-Z0-9]{0,7})?";
+        String re_label = "(?<label>[A-Z][A-Z0-9]*)?";
         String re_op = "\\s+(?<op>[A-Z]+)";
         String re_arg1 = "(?<arg1>=?(([-#]?[A-Za-z0-9_]+)|('([^']|'')+')))";
         String re_arg2 = "(?<arg2>=?(([-#]?[A-Za-z0-9_]+)|('([^']|'')+')))";
