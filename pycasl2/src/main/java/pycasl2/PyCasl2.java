@@ -116,7 +116,6 @@ public class PyCasl2 {
             }
             boolean retFlg = false;
             while (!(this.nextLine.op.equals("END") || this.nextLine.op.equals("EOF"))) {
-            	System.out.println(">>> " + this.nextLine);
                 if (this.nextLine.op.equals("RET")) {
                     retFlg = true;
                 }
@@ -345,7 +344,6 @@ public class PyCasl2 {
 
     private Object[] genCodeRAdrX(String op, String[] args) {
         Object[] radrx = this.convRAdrX(args);
-        System.out.println(op + " " + radrx);
         int r = (int) radrx[0];
         Object adr = radrx[1];
         int x = (int) radrx[2];
