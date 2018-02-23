@@ -1,0 +1,6 @@
+CASL START BEGIN
+BEGIN NOP
+ LAD GR1,1
+ JUMP LABEL123 ;; bug here. missing label
+ RET
+ END

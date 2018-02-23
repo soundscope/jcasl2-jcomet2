@@ -13,6 +13,6 @@ class Error extends RuntimeException {
 
     @Override
     public String getMessage() {
-        return String.format("Error: %s%nLine %d: %s", super.getMessage(), this.lineNum, this.src);
+        return String.format("PyCasl2 Error: %s%nLine %d: %s", super.getMessage(), this.lineNum, this.src);
     }
 }

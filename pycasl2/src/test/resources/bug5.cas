@@ -1,0 +1,6 @@
+CASL START BEGIN
+BEGIN NOP
+ LAD GR1,1
+LABEL1234 NOP  ;; bug here. too long label
+ RET
+ END

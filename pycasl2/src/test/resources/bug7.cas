@@ -1,0 +1,5 @@
+CASL START BEGIN
+BEGIN NOP
+ LAD G1,1 ;; bug here. invalid register
+ RET
+ END

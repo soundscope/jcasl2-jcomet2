@@ -1,7 +1,6 @@
 package pycasl2;
 
-import org.junit.Before;
-import org.junit.Test;
+import static org.junit.Assert.*;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -12,8 +11,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
+import org.junit.Before;
+import org.junit.Test;
 
 public class PyCasl2Test {
 
@@ -101,6 +100,44 @@ public class PyCasl2Test {
     @Test
     public void bug4() throws Exception {
         test("bug4");
+    }
+    @Test
+    public void bug5() throws Exception {
+      Path casPath = Paths.get(PyCasl2Test.class.getResource("/bug5.cas").toURI());
+      Path inputPath = Paths.get(tmpDir.toString(), casPath.getFileName().toString());
+      Files.copy(casPath, inputPath, StandardCopyOption.REPLACE_EXISTING);
+      ByteArrayOutputStream err = new ByteArrayOutputStream();
+  		System.setErr(new PrintStream(err));
+      
+      PyCasl2.main(new String[]{inputPath.toString()});
+  		assertTrue(err.toString().contains("PyCasl2 Error: The length of label must not exceed 8 characters."));
+  		assertTrue(err.toString().contains("Line 4: LABEL1234 NOP"));
+    }
+    
+    @Test
+    public void bug6() throws Exception {
+      Path casPath = Paths.get(PyCasl2Test.class.getResource("/bug6.cas").toURI());
+      Path inputPath = Paths.get(tmpDir.toString(), casPath.getFileName().toString());
+      Files.copy(casPath, inputPath, StandardCopyOption.REPLACE_EXISTING);
+      ByteArrayOutputStream err = new ByteArrayOutputStream();
+  		System.setErr(new PrintStream(err));
+      
+      PyCasl2.main(new String[]{inputPath.toString()});
+  		assertTrue(err.toString().contains("PyCasl2 Error: Undefined label \"LABEL123\" was found."));
+  		assertTrue(err.toString().contains("Line 4:  JUMP LABEL123"));
+    }
+    
+    @Test
+    public void bug7() throws Exception {
+      Path casPath = Paths.get(PyCasl2Test.class.getResource("/bug7.cas").toURI());
+      Path inputPath = Paths.get(tmpDir.toString(), casPath.getFileName().toString());
+      Files.copy(casPath, inputPath, StandardCopyOption.REPLACE_EXISTING);
+      ByteArrayOutputStream err = new ByteArrayOutputStream();
+  		System.setErr(new PrintStream(err));
+      
+      PyCasl2.main(new String[]{inputPath.toString()});
+  		assertTrue(err.toString().contains("PyCasl2 Error: Invalid operation is found."));
+  		assertTrue(err.toString().contains("Line 3:  LAD G1,1"));
     }
 
     private void test(String target) throws Exception {

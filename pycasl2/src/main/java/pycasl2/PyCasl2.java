@@ -238,8 +238,7 @@ public class PyCasl2 {
         if (result.matches()) {
             return null;
         }
-
-        String re_label = "(?<label>[A-Z][A-Z0-9]*)?";
+        String re_label = "(?<label>[A-Za-z][A-Za-z0-9]*)?";
         String re_op = "\\s+(?<op>[A-Z]+)";
         String re_arg1 = "(?<arg1>=?(([-#]?[A-Za-z0-9_]+)|('([^']|'')+')))";
         String re_arg2 = "(?<arg2>=?(([-#]?[A-Za-z0-9_]+)|('([^']|'')+')))";
@@ -247,14 +246,22 @@ public class PyCasl2 {
         String re_args = "(\\s+" + re_arg1 + "(\\s*,\\s*" + re_arg2 + "(\\s*,\\s*" + re_arg3 + ")?)?)?";
         String re_comment = "(\\s*(;(?<comment>.+)?)?)?";
         String pattern = "(^" + re_label + re_op + re_args + ")?" + re_comment;
-
         result = Pattern.compile(pattern).matcher(line);
         if (!result.find() || result.start() != 0) {
-            throw new RuntimeException(String.format("Line %d: Invalid line was found.", lineNumber));
+            throw new Error(lineNumber, line, String.format("Invalid line was found."));
         }
 
         String label = result.group("label");
         String op = result.group("op");
+
+        if (label != null) {
+            if (!label.equals(label.toUpperCase())) {
+                throw new Error(lineNumber, line, String.format("Label must consist of upper-case characters."));
+            }
+            if (label.length() > 8) {
+                throw new Error(lineNumber, line, String.format("The length of label must not exceed 8 characters."));
+            }
+        }
         List<String> args = new ArrayList<>();
         if (result.group("arg1") != null) {
             args.add(result.group("arg1"));
@@ -272,7 +279,7 @@ public class PyCasl2 {
         if (inst.label != null && !inst.label.isEmpty()) {
             String labelName = currentScope + "." + inst.label;
             if (this.symbols.containsKey(labelName)) {
-                throw new RuntimeException(String.format("Line %d: Label \"%s\" is already defined.", inst.lineNumber, inst.label));
+                throw new Error(inst.lineNumber, inst.src, String.format("Label \"%s\" is already defined.", inst.label));
             }
             this.symbols.put(labelName, new Label(labelName, inst.lineNumber, this.file, this.addr));
         }
@@ -446,7 +453,7 @@ public class PyCasl2 {
         } else if (Operation.valueOf(inst.op).code < 0) {
             return null;
         }
-//System.out.println("--- " + inst.op + " " + inst);
+
         Object[] code = this.genCodeFunc.get(Operation.valueOf(inst.op).argType).apply(inst.op, inst.args);
         ByteCode byteCode = new ByteCode(code, this.addr, inst.lineNumber, inst.src);
         this.addr += byteCode.code.length;
