@@ -1,13 +1,13 @@
 package jp.kusumotolab.jcomet2;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.stream.Collectors;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 
 public class JComet2InteractiveModeTest extends JComet2Test {
 

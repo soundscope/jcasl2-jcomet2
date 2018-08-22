@@ -1,6 +1,8 @@
 package jp.kusumotolab.jcasl2;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
@@ -11,7 +13,6 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import org.junit.Before;
 import org.junit.Test;
-import jp.kusumotolab.jcasl2.JCasl2;
 
 public class JCasl2Test {
 

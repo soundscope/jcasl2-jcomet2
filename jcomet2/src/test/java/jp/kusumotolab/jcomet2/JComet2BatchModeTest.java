@@ -1,7 +1,5 @@
 package jp.kusumotolab.jcomet2;
 
-import org.junit.Assert;
-import org.junit.Test;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -11,6 +9,8 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.stream.Collectors;
 import java.util.zip.GZIPInputStream;
+import org.junit.Assert;
+import org.junit.Test;
 
 public class JComet2BatchModeTest extends JComet2Test {
 

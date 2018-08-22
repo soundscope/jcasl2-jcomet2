@@ -1,14 +1,16 @@
 package jp.kusumotolab.jcomet2;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import jp.kusumotolab.jcomet2.JComet2;
-import java.io.*;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.io.PrintStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 
 public class JComet2EnshuDTest extends JComet2Test {
 

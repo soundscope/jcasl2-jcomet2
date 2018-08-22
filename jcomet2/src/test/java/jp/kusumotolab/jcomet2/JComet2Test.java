@@ -1,9 +1,14 @@
 package jp.kusumotolab.jcomet2;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.PrintStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import jp.kusumotolab.jcomet2.JComet2;
 
 public abstract class JComet2Test {
 
