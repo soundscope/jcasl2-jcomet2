@@ -432,7 +432,7 @@ public class JComet2 implements Util {
 
   private void waitForCommand() throws IOException {
     while (!this.exiting) {
-      System.err.print("pycomet2> ");
+      System.err.print("jcomet2> ");
       System.err.flush();
       String line = in.readLine();
       String[] args = line.split("\\s");
@@ -588,8 +588,7 @@ public class JComet2 implements Util {
     if (version) {
       System.out.println("JComet2 version 1.0");
     } else if (argList.size() < 1 || help) {
-      String options = "Options:\n"
-          + "  -h, --help            show this help message and exit\n"
+      String options = "Options:\n" + "  -h, --help            show this help message and exit\n"
           + "  -c, --count-step      count step.\n"
           + "  -d, --dump            dump last status to last_state.txt.\n"
           + "  -r, --run             run\n" //

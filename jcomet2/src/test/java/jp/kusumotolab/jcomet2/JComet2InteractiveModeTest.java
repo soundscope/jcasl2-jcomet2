@@ -26,13 +26,15 @@ public class JComet2InteractiveModeTest extends JComet2Test {
     Files.copy(comPath, inputPath, StandardCopyOption.REPLACE_EXISTING);
     String out = runJComet2(new String[] {inputPath.toString()}, input);
     String actual = out.replace("\r", "")
-        .replace("pycomet2> ", "")
+        .replace("jcomet2> ", "")
         .replace("tmp\\001.com", "001.com");
     Path expectedPath = Paths.get(JComet2Test.class.getResource("/enshud/" + target + "-step.txt")
         .toURI());
     String expected = Files.lines(expectedPath)
-        .filter(e -> !e.startsWith("pycomet2> "))
+        .filter(e -> !e.startsWith("jcomet2> "))
         .collect(Collectors.joining("\n"));
+    // System.err.println(expectedPath);
+    // System.out.println(expected);
     Assert.assertEquals(expected, actual);
   }
 
@@ -103,9 +105,8 @@ public class JComet2InteractiveModeTest extends JComet2Test {
     String actual = out.replace("\r", "")
         .replace("tmp\\001.com", "001.com")
         .trim();
-    Path expectedPath =
-        Paths.get(JComet2Test.class.getResource("/enshud/" + target + "-memory.txt")
-            .toURI());
+    Path expectedPath = Paths.get(JComet2Test.class.getResource("/enshud/" + target + "-memory.txt")
+        .toURI());
     String expected = new String(Files.readAllBytes(expectedPath)).replace("\r", "")
         .trim();
     Assert.assertEquals(expected, actual);
