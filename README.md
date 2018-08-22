@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/kusumotolab/jacasl2-jacomet2.svg?branch=master)](https://travis-ci.org/kusumotolab/jacasl2-jacomet2)
+
 # JCasl2 & JComet2
 
 [CASLIIアセンブラ & シミュレータ PyCASL2 & PyCOMET2](http://www.image.med.osaka-u.ac.jp/member/nakamoto/pycasl2/)
