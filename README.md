@@ -39,7 +39,7 @@ Pythonを導入していない環境でも、Javaさえあれば実行するこ�
 #### 使い方
 
 ```
-java -jar jcasl2.jar [option] input.cas [output.com]
+$ java -jar jcasl2.jar [option] input.cas [output.com]
 ```
 
 #### 引数
@@ -58,13 +58,13 @@ java -jar jcasl2.jar [option] input.cas [output.com]
 example.casをアセンブルし、program.comを生成します。
 
 ```
-> java -jar jcaslt2.jar example.cas program.com
+$ java -jar jcaslt2.jar example.cas program.com
 ```
 
 example.casをアセンブルし、example.comを生成します。また詳細情報出力します。
 
 ```
-> java -jar jcasl2.jar -a example.cas
+$ java -jar jcasl2.jar -a example.cas
 Addr    Op              Line    Source code
 0000    1250            2               LAD     GR5, 1
 0001    0001
@@ -126,19 +126,19 @@ java -jar jcomet2.jar [options] input.com
 example.comを対話モードで実行します。:
 
 ```
-> java -jar jcomet2.jar example.com
+$ java -jar jcomet2.jar example.com
 ```
 
 example.comを非対話モードで実行し、終了時の状態を保存します。:
 
 ```
-> java -jar jcomet2.jar -d -r example.com
+$ java -jar jcomet2.jar -d -r example.com
 ```
 
 example.comを非対話モードで実行します。実行中はPR, GR0, メモリの#001b番地の各値が表示されます。:
 
 ```
-> java -jar jcomet2.jar -w PR,GR0,#001b example.com
+$ java -jar jcomet2.jar -w PR,GR0,#001b example.com
 0000: PR=#0000, GR0=#0000, #001b=#000f
 0001: PR=#0002, GR0=#0001, #001b=#000f
 0002: PR=#0004, GR0=#0001, #001b=#000f
