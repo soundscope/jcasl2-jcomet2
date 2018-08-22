@@ -10,9 +10,15 @@ import java.nio.file.StandardCopyOption;
 import java.util.stream.Collectors;
 import java.util.zip.GZIPInputStream;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 public class JComet2BatchModeTest extends JComet2Test {
+
+  @Before
+  public void before() {
+    tmpDir.mkdir();
+  }
 
   @Test(timeout = 1000)
   public void testCount() throws Exception {
