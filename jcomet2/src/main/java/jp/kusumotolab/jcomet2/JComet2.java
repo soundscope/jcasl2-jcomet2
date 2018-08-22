@@ -24,6 +24,51 @@ import java.util.function.Function;
 import java.util.function.IntFunction;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
+import jp.kusumotolab.jcomet2.ops.ADDA1;
+import jp.kusumotolab.jcomet2.ops.ADDA2;
+import jp.kusumotolab.jcomet2.ops.ADDL1;
+import jp.kusumotolab.jcomet2.ops.ADDL2;
+import jp.kusumotolab.jcomet2.ops.AND1;
+import jp.kusumotolab.jcomet2.ops.AND2;
+import jp.kusumotolab.jcomet2.ops.ArgType;
+import jp.kusumotolab.jcomet2.ops.CALL;
+import jp.kusumotolab.jcomet2.ops.CPA1;
+import jp.kusumotolab.jcomet2.ops.CPA2;
+import jp.kusumotolab.jcomet2.ops.CPL1;
+import jp.kusumotolab.jcomet2.ops.CPL2;
+import jp.kusumotolab.jcomet2.ops.IN;
+import jp.kusumotolab.jcomet2.ops.Instruction;
+import jp.kusumotolab.jcomet2.ops.JMI;
+import jp.kusumotolab.jcomet2.ops.JNZ;
+import jp.kusumotolab.jcomet2.ops.JOV;
+import jp.kusumotolab.jcomet2.ops.JPL;
+import jp.kusumotolab.jcomet2.ops.JUMP;
+import jp.kusumotolab.jcomet2.ops.JZE;
+import jp.kusumotolab.jcomet2.ops.LAD;
+import jp.kusumotolab.jcomet2.ops.LD1;
+import jp.kusumotolab.jcomet2.ops.LD2;
+import jp.kusumotolab.jcomet2.ops.NOP;
+import jp.kusumotolab.jcomet2.ops.OR1;
+import jp.kusumotolab.jcomet2.ops.OR2;
+import jp.kusumotolab.jcomet2.ops.OUT;
+import jp.kusumotolab.jcomet2.ops.POP;
+import jp.kusumotolab.jcomet2.ops.PUSH;
+import jp.kusumotolab.jcomet2.ops.RET;
+import jp.kusumotolab.jcomet2.ops.RPOP;
+import jp.kusumotolab.jcomet2.ops.RPUSH;
+import jp.kusumotolab.jcomet2.ops.SLA;
+import jp.kusumotolab.jcomet2.ops.SLL;
+import jp.kusumotolab.jcomet2.ops.SRA;
+import jp.kusumotolab.jcomet2.ops.SRL;
+import jp.kusumotolab.jcomet2.ops.ST;
+import jp.kusumotolab.jcomet2.ops.SUBA1;
+import jp.kusumotolab.jcomet2.ops.SUBA2;
+import jp.kusumotolab.jcomet2.ops.SUBL1;
+import jp.kusumotolab.jcomet2.ops.SUBL2;
+import jp.kusumotolab.jcomet2.ops.SVC;
+import jp.kusumotolab.jcomet2.ops.Util;
+import jp.kusumotolab.jcomet2.ops.XOR1;
+import jp.kusumotolab.jcomet2.ops.XOR2;
 
 
 public class JComet2 implements Util {
@@ -144,11 +189,11 @@ public class JComet2 implements Util {
     this.ZF = 1;
   }
 
-  protected void setSP(int v) {
+  public void setSP(int v) {
     this.GR[8] = v;
   }
 
-  protected int getSP() {
+  public int getSP() {
     return this.GR[8];
   }
 
@@ -172,7 +217,7 @@ public class JComet2 implements Util {
         this.GR[7], l2a(this.GR[7])));
   }
 
-  void exit() {
+  public void exit() {
     if (this.isCountStep) {
       System.out.println("Step count: " + this.stepCount);
     }
@@ -316,7 +361,7 @@ public class JComet2 implements Util {
     dump(0x0000);
   }
 
-  void dump(int startAddr) {
+  public void dump(int startAddr) {
     System.out.print(this.dumpMemory(startAddr, 16));
   }
 
