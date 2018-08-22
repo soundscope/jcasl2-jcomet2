@@ -62,7 +62,7 @@ example.casをアセンブルし、program.comを生成します。
 example.casをアセンブルし、example.comを生成します。また詳細情報出力します。
 
 ```
-> java -jar jcasl2 -a example.cas
+> java -jar jcasl2.jar -a example.cas
 Addr    Op              Line    Source code
 0000    1250            2               LAD     GR5, 1
 0001    0001
