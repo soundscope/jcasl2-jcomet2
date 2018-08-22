@@ -37,3 +37,10 @@ project(':jcomet2') {
     }
   }
 }
+
+test {
+  testLogging {
+    events "passed", "skipped", "failed"
+    exceptionFormat "full"
+  }
+}
