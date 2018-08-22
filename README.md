@@ -1,4 +1,4 @@
-# PyCASL2 & PyCOMET2 Java
+# JaCASL2 & JaCOMET2
 
 [CASLIIアセンブラ & シミュレータ PyCASL2 & PyCOMET2](http://www.image.med.osaka-u.ac.jp/member/nakamoto/pycasl2/)
 をJavaで実装したものです。
@@ -9,18 +9,18 @@ Pythonを導入していない環境でも、Javaさえあれば実行するこ�
 
 - 文字定数に含まれるアポストロフィを正しく処理できない
 - ラベルが9文字以上または英小文字またはアンダーバーが含まれていてもコンパイルする
-- PyComet2の対話モードでデバッグポイントの削除ができない
+- JaComet2の対話モードでデバッグポイントの削除ができない
 
 ## 概要
 
-**PyCASL2 & PyCOMET2 Java**は CASLII のアセンブラおよびシミュレータです。
+**JaCASL2 & JaCOMET2**は CASLII のアセンブラおよびシミュレータです。
 大阪大学基礎工学部情報科学科3年生の「情報科学演習D」で用いるために開発されました。
 演習用に一部の仕様が拡張されています。
 
 ### 拡張された仕様
 
 - 汎用レジスタGR8が増設されています。GR8はスタックポインタ(SP)を兼ねており、GR8の値を変更することはスタックポインタの値を変更することと等価です。また、RPUSH, RPOP命令ではGR8も操作対象となっています。
-- DC, DS命令はRET命令とEND命令の間にのみ、置くことができます。(pycasl2 1.1以降) START命令とRET命令の間に置かれた場合はエラーになります。
+- DC, DS命令はRET命令とEND命令の間にのみ、置くことができます。(jacasl2 1.1以降) START命令とRET命令の間に置かれた場合はエラーになります。
 
 ## 動作環境
 
@@ -28,16 +28,16 @@ Pythonを導入していない環境でも、Javaさえあれば実行するこ�
 
 ## ダウンロード
 
-- https://github.com/oguna/pycasl2-pycomet2-java/releases
+- https://github.com/oguna/jacasl2-jacomet2/releases
 
 ## マニュアル
 
-### PyCASL2
+### JaCASL2
 
 #### 使い方
 
 ```
-java -jar PyCasl2.jar [option] input.cas [output.com]
+java -jar jacaslt2.jar [option] input.cas [output.com]
 ```
 
 #### 引数
@@ -56,13 +56,13 @@ java -jar PyCasl2.jar [option] input.cas [output.com]
 example.casをアセンブルし、program.comを生成します。
 
 ```
-> java -jar PyCasl2.jar example.cas program.com
+> java -jar jacaslt2.jar example.cas program.com
 ```
 
 example.casをアセンブルし、example.comを生成します。また詳細情報出力します。
 
 ```
-> java PyCasl2 -a example.cas
+> java JaCasl2 -a example.cas
 Addr    Op              Line    Source code
 0000    1250            2               LAD     GR5, 1
 0001    0001
@@ -72,12 +72,12 @@ Defined labels
 example.cas:1      0000    MAIN
 ```
 
-### PyCOMET2
+### JaCOMET2
 
 #### 使い方
 
 ```
-java -jar PyComet2.jar [options] input.com
+java -jar jacomet2.jar [options] input.com
 ```
 
 デフォルトでは対話モードで起動します。
@@ -124,19 +124,19 @@ java -jar PyComet2.jar [options] input.com
 example.comを対話モードで実行します。:
 
 ```
-> java -jar PyComet2.jar example.com
+> java -jar jacomet2.jar example.com
 ```
 
 example.comを非対話モードで実行し、終了時の状態を保存します。:
 
 ```
-> java -jar PyComet2.jar -d -r example.com
+> java -jar jacomet2.jar -d -r example.com
 ```
 
 example.comを非対話モードで実行します。実行中はPR, GR0, メモリの#001b番地の各値が表示されます。:
 
 ```
-> java -jar PyComet2.jar -w PR,GR0,#001b example.com
+> java -jar jacomet2.jar -w PR,GR0,#001b example.com
 0000: PR=#0000, GR0=#0000, #001b=#000f
 0001: PR=#0002, GR0=#0001, #001b=#000f
 0002: PR=#0004, GR0=#0001, #001b=#000f
@@ -145,4 +145,4 @@ example.comを非対話モードで実行します。実行中はPR, GR0, メモ
 
 ## ライセンス
 
-**PyCASL2 & PyCOMET2 Java**はGPL2に基づくフリーソフトウェアとして公開しています。
+**JaCASL2 & JaCOMET2**はGPL2に基づくフリーソフトウェアとして公開しています。
