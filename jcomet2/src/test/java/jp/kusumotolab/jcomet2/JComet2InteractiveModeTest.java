@@ -1,5 +1,6 @@
 package jp.kusumotolab.jcomet2;
 
+import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -27,14 +28,12 @@ public class JComet2InteractiveModeTest extends JComet2Test {
     String out = runJComet2(new String[] {inputPath.toString()}, input);
     String actual = out.replace("\r", "")
         .replace("jcomet2> ", "")
-        .replace("tmp\\001.com", "001.com");
+        .replace("tmp" + File.separator + "001.com", "001.com");
     Path expectedPath = Paths.get(JComet2Test.class.getResource("/enshud/" + target + "-step.txt")
         .toURI());
     String expected = Files.lines(expectedPath)
         .filter(e -> !e.startsWith("jcomet2> "))
         .collect(Collectors.joining("\n"));
-    // System.err.println(expectedPath);
-    // System.out.println(expected);
     Assert.assertEquals(expected, actual);
   }
 
@@ -48,7 +47,7 @@ public class JComet2InteractiveModeTest extends JComet2Test {
     Files.copy(comPath, inputPath, StandardCopyOption.REPLACE_EXISTING);
     String out = runJComet2(new String[] {inputPath.toString()}, input);
     String actual = out.replace("\r", "")
-        .replace("tmp\\001.com", "001.com");
+        .replace("tmp" + File.separator + "001.com", "001.com");
     Path expectedPath = Paths.get(JComet2Test.class.getResource("/enshud/" + target + "-di.txt")
         .toURI());
     String expected = new String(Files.readAllBytes(expectedPath)).replace("\r", "");
@@ -65,7 +64,7 @@ public class JComet2InteractiveModeTest extends JComet2Test {
     Files.copy(comPath, inputPath, StandardCopyOption.REPLACE_EXISTING);
     String out = runJComet2(new String[] {inputPath.toString()}, input);
     String actual = out.replace("\r", "")
-        .replace("tmp\\001.com", "001.com")
+        .replace("tmp" + File.separator + "001.com", "001.com")
         .trim();
     Path expectedPath = Paths.get(JComet2Test.class.getResource("/enshud/" + target + "-du.txt")
         .toURI());
@@ -84,7 +83,7 @@ public class JComet2InteractiveModeTest extends JComet2Test {
     Files.copy(comPath, inputPath, StandardCopyOption.REPLACE_EXISTING);
     String out = runJComet2(new String[] {inputPath.toString()}, input);
     String actual = out.replace("\r", "")
-        .replace("tmp\\001.com", "001.com")
+        .replace("tmp" + File.separator + "001.com", "001.com")
         .trim();
     Path expectedPath = Paths.get(JComet2Test.class.getResource("/enshud/" + target + "-jump.txt")
         .toURI());
@@ -103,7 +102,7 @@ public class JComet2InteractiveModeTest extends JComet2Test {
     Files.copy(comPath, inputPath, StandardCopyOption.REPLACE_EXISTING);
     String out = runJComet2(new String[] {inputPath.toString()}, input);
     String actual = out.replace("\r", "")
-        .replace("tmp\\001.com", "001.com")
+        .replace("tmp" + File.separator + "001.com", "001.com")
         .trim();
     Path expectedPath = Paths.get(JComet2Test.class.getResource("/enshud/" + target + "-memory.txt")
         .toURI());
@@ -122,7 +121,7 @@ public class JComet2InteractiveModeTest extends JComet2Test {
     Files.copy(comPath, inputPath, StandardCopyOption.REPLACE_EXISTING);
     String out = runJComet2(new String[] {inputPath.toString()}, input);
     String actual = out.replace("\r", "")
-        .replace("tmp\\001.com", "001.com")
+        .replace("tmp" + File.separator + "001.com", "001.com")
         .trim();
     Path expectedPath = Paths.get(JComet2Test.class.getResource("/enshud/" + target + "-break.txt")
         .toURI());
@@ -141,7 +140,7 @@ public class JComet2InteractiveModeTest extends JComet2Test {
     Files.copy(comPath, inputPath, StandardCopyOption.REPLACE_EXISTING);
     String out = runJComet2(new String[] {inputPath.toString()}, input);
     String actual = out.replace("\r", "")
-        .replace("tmp\\001.com", "001.com")
+        .replace("tmp" + File.separator + "001.com", "001.com")
         .trim();
     Path expectedPath = Paths.get(JComet2Test.class.getResource("/enshud/" + target + "-help.txt")
         .toURI());
