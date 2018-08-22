@@ -17,6 +17,13 @@ subprojects {
   dependencies {
     testCompile 'junit:junit:4.12'
   }
+  
+  test {
+    testLogging {
+      events "passed", "skipped", "failed"
+      exceptionFormat "full"
+    }
+  }
 }
 
 
@@ -35,12 +42,5 @@ project(':jcomet2') {
     manifest {
       attributes "Main-Class": "jp.kusumotolab.jcomet2.JComet2"
     }
-  }
-}
-
-test {
-  testLogging {
-    events "passed", "skipped", "failed"
-    exceptionFormat "full"
   }
 }
