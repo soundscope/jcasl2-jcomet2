@@ -24,7 +24,7 @@ project(':jacasl2') {
   jar {
     archiveName = "jacasl2.jar"
     manifest {
-      attributes "Main-Class": "jacasl2.JaCasl2"
+      attributes "Main-Class": "jp.kusumotolab.jacasl2.JaCasl2"
     }
   }
 }
@@ -33,7 +33,7 @@ project(':jacomet2') {
   jar {
     archiveName = "jacomet2.jar"
     manifest {
-      attributes "Main-Class": "jacomet2.JaComet2"
+      attributes "Main-Class": "jp.kusumotolab.jacomet2.JaComet2"
     }
   }
 }
