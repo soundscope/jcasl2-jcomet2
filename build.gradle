@@ -20,20 +20,20 @@ subprojects {
 }
 
 
-project(':jacasl2') {
+project(':jcasl2') {
   jar {
-    archiveName = "jacasl2.jar"
+    archiveName = "jcasl2.jar"
     manifest {
-      attributes "Main-Class": "jp.kusumotolab.jacasl2.JaCasl2"
+      attributes "Main-Class": "jp.kusumotolab.jcasl2.JCasl2"
     }
   }
 }
 
-project(':jacomet2') {
+project(':jcomet2') {
   jar {
-    archiveName = "jacomet2.jar"
+    archiveName = "jcomet2.jar"
     manifest {
-      attributes "Main-Class": "jp.kusumotolab.jacomet2.JaComet2"
+      attributes "Main-Class": "jp.kusumotolab.jcomet2.JComet2"
     }
   }
 }
