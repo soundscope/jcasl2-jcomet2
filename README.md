@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/kusumotolab/jacasl2-jacomet2.svg?branch=master)](https://travis-ci.org/kusumotolab/jacasl2-jacomet2)
+[![Build Status](https://travis-ci.org/kusumotolab/jcasl2-jcomet2.svg?branch=master)](https://travis-ci.org/kusumotolab/jcasl2-jcomet2)
 
 # JCasl2 & JComet2
 
