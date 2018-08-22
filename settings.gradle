@@ -1,4 +1,3 @@
-rootProject.name = 'pycasl2-pycomet2-java'
-include 'pycasl2'
-include 'pycomet2'
-
+rootProject.name = 'jacasl2-jacomet2'
+include 'jacasl2'
+include 'jacomet2'

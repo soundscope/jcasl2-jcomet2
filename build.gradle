@@ -1,1 +1,39 @@
 version '1.0-SNAPSHOT'
+
+allprojects {
+  apply plugin: 'eclipse'
+}
+
+subprojects {
+  apply plugin: 'java'
+
+  sourceCompatibility = 1.8
+  targetCompatibility = 1.8
+
+  repositories {
+    mavenCentral()
+  }
+
+  dependencies {
+    testCompile 'junit:junit:4.12'
+  }
+}
+
+
+project(':jacasl2') {
+  jar {
+    archiveName = "jacasl2.jar"
+    manifest {
+      attributes "Main-Class": "jacasl2.JaCasl2"
+    }
+  }
+}
+
+project(':jacomet2') {
+  jar {
+    archiveName = "jacomet2.jar"
+    manifest {
+      attributes "Main-Class": "jacomet2.JaComet2"
+    }
+  }
+}
