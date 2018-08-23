@@ -1,5 +1,3 @@
-version '1.0-SNAPSHOT'
-
 allprojects {
   apply plugin: 'eclipse'
 }
@@ -15,15 +13,18 @@ subprojects {
   }
 
   dependencies {
-    testCompile 'junit:junit:4.12'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
   }
   
-  // test {
-  //   testLogging {
-  //     events "passed", "skipped", "failed"
-  //     exceptionFormat "full"
-  //   }
-  // }
+  // Dsiabling verbose test logging
+  /*
+  test {
+    testLogging {
+      events "passed", "skipped", "failed"
+     exceptionFormat "full"
+    }
+  }
+  */
 }
 
 
