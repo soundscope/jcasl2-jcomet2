@@ -15,16 +15,6 @@ subprojects {
   dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
   }
-  
-  // Dsiabling verbose test logging
-  /*
-  test {
-    testLogging {
-      events "passed", "skipped", "failed"
-     exceptionFormat "full"
-    }
-  }
-  */
 }
 
 
@@ -34,6 +24,8 @@ project(':jcasl2') {
     manifest {
       attributes "Main-Class": "jp.kusumotolab.jcasl2.JCasl2"
     }
+    classifier 'sources'
+    from sourceSets.main.allSource
   }
 }
 
@@ -43,5 +35,7 @@ project(':jcomet2') {
     manifest {
       attributes "Main-Class": "jp.kusumotolab.jcomet2.JComet2"
     }
+    classifier 'sources'
+    from sourceSets.main.allSource
   }
 }
