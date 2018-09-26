@@ -14,7 +14,7 @@ class Error extends RuntimeException {
 
   @Override
   public String getMessage() {
-    return String.format("JCasl2 Error: %s%nLine %d: %s", super.getMessage(), this.lineNum,
+    return String.format("%s%nLine %d: %s", super.getMessage(), this.lineNum,
         this.src);
   }
 }

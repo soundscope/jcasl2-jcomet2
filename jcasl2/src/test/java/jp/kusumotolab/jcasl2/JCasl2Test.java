@@ -116,7 +116,7 @@ public class JCasl2Test {
 
     JCasl2.main(new String[] {inputPath.toString()});
     assertTrue(err.toString()
-        .contains("JCasl2 Error: The length of label must not exceed 8 characters."));
+        .contains("The length of label must not exceed 8 characters."));
     assertTrue(err.toString()
         .contains("Line 4: LABEL1234 NOP"));
   }
@@ -133,7 +133,7 @@ public class JCasl2Test {
 
     JCasl2.main(new String[] {inputPath.toString()});
     assertTrue(err.toString()
-        .contains("JCasl2 Error: Undefined label \"LABEL123\" was found."));
+        .contains("Undefined label \"LABEL123\" was found."));
     assertTrue(err.toString()
         .contains("Line 4:  JUMP LABEL123"));
   }
@@ -150,7 +150,7 @@ public class JCasl2Test {
 
     JCasl2.main(new String[] {inputPath.toString()});
     assertTrue(err.toString()
-        .contains("JCasl2 Error: Invalid operation is found."));
+        .contains("Invalid register name \"G1\" found."));
     assertTrue(err.toString()
         .contains("Line 3:  LAD G1,1"));
   }

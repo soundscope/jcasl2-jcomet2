@@ -103,7 +103,7 @@ public class JCasl2 {
       this.getLine();
       this.isValidProgram();
     } catch (Error e) {
-      throw new RuntimeException(e.getMessage());
+      throw e;
     } catch (Exception e) {
       e.printStackTrace();
       throw new RuntimeException(
@@ -219,11 +219,8 @@ public class JCasl2 {
     if (i.op.equals("END") || i.op.equals("START")) {
       return false;
     }
-    try {
-      this.tmpCode.add(this.convert(i));
-    } catch (RuntimeException e) {
-      return false;
-    }
+    this.tmpCode.add(this.convert(i));
+
     return true;
   }
 
@@ -316,11 +313,22 @@ public class JCasl2 {
     }
   }
 
+
+  private void isValidRegister(String r) {
+    if (!regStr.containsKey(r)) {
+      throw new Error(this.currentLineNumber, this.currentSrc,
+          String.format("Invalid register name \"%s\" found.", r));
+    }
+  }
+
   private Object[] convR(String[] args) {
+    isValidRegister(args[0]);
     return new Object[] {regStr.get(args[0])};
   }
 
   private Object[] convR1R2(String[] args) {
+    isValidRegister(args[0]);
+    isValidRegister(args[1]);
     return new Object[] {regStr.get(args[0]), regStr.get(args[1])};
   }
 
@@ -329,15 +337,18 @@ public class JCasl2 {
     if (args.length == 1) {
       return new Object[] {addr, 0};
     } else {
+      isValidRegister(args[1]);
       return new Object[] {addr, regStr.get(args[1])};
     }
   }
 
   private Object[] convRAdrX(String[] args) {
+    isValidRegister(args[0]);
     Object addr = this.convAdr(args[1]);
     if (args.length == 2) {
       return new Object[] {regStr.get(args[0]), addr, 0};
     } else {
+      isValidRegister(args[2]);
       return new Object[] {regStr.get(args[0]), addr, regStr.get(args[2])};
     }
   }
@@ -464,8 +475,8 @@ public class JCasl2 {
     try {
       Operation.valueOf(inst.op);
     } catch (IllegalArgumentException | NullPointerException e) {
-      throw new RuntimeException(String.format("Line %d: Invalid instruction \"%s\" was found.",
-          inst.lineNumber, inst.op));
+      throw new Error(this.currentLineNumber, this.currentScope, String
+          .format("Line %d: Invalid instruction \"%s\" was found.", inst.lineNumber, inst.op));
     }
     if (-100 < Operation.valueOf(inst.op).code && Operation.valueOf(inst.op).code < 0) {
       if (this.isArgRegister(inst.args[1])) {
@@ -577,7 +588,7 @@ public class JCasl2 {
         }
         casl2.write(new File(comName), x);
       } catch (Exception e) {
-        System.err.println("An I/O error occurred while reading casl file: " + argList.get(0));
+        System.err.println("jp.kusumotolab.jcasl2.Error: An error occurred in: " + argList.get(0));
         e.printStackTrace();
       }
     }
