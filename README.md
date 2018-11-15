@@ -30,7 +30,7 @@ JavaさえあればCASL&COMETを実行することができます．
 
 ## ダウンロード
 
-- https://github.com/oguna/jcasl2-jcomet2/releases
+- https://github.com/kusumotolab/jcasl2-jcomet2/releases
 
 ## マニュアル
 
