@@ -180,7 +180,19 @@ public class JCasl2 {
         this.nextLine = new Instruction(null, "EOF", null, this.currentLineNumber + 1, "");
         return current;
       }
-      int semicolonIndex = line.indexOf(';');
+      boolean cnt = true;
+      int semicolonIndex = -1;
+      for(int i = 0; i < line.length(); i++) {
+    	  char now = line.charAt(i);
+    	  if (now == '\'') {
+    		  if (i + 1 < line.length() && line.charAt(i+1) == '\'') i++;
+    		  else cnt ^= true;
+    	  }
+    	  if (cnt && now == ';') {
+    		  semicolonIndex = i; 
+    		  break;
+    	  }
+      }
       if (semicolonIndex == -1) {
         line = line.replaceAll("\\s+$", "");
       } else {
