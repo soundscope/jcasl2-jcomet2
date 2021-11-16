@@ -19,7 +19,7 @@ public class OUT extends Instruction {
     StringBuilder sb = new StringBuilder();
     for (int i = s; i < s + length; i++) {
       if (Character.isValidCodePoint(this.m.memory[i])) {
-        sb.append((char) this.m.memory[i]);
+        sb.append((char) (this.m.memory[i] & 0x000000FF));
       } else {
         System.err.println("Error:");
         this.m.printStatus();
